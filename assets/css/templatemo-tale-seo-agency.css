@@ -1290,6 +1290,20 @@ footer p a:hover {
   color: #5b03e4;
 }
 
+.author-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.author-page .author-section {
+  flex: 1;
+}
+
+.author-page footer {
+  margin-top: auto;
+}
+
 /* 
 ---------------------------------------------
 Page Heading Style
