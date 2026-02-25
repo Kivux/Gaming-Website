@@ -1,11 +1,86 @@
-let navigacija = ["home","services","projects","infos","contact"];
-let navigacijaHref = ["top","services","projects","infos","contact"];
+// Dinamičko generisanje navigacije
+let navigacija = ["Home","Services","Projects","Infos","Contact","Author"];
+let navigacijaHref = ["top","services","projects","infos","contact","author.html"];
+
 let navi1 = document.getElementById("nav1");
 let navHtml = "";
-    for(let i=0; i<navigacija.length; i++){
-        navHtml+=`<li class="scroll-to-section"><a href="#`+navigacijaHref[i]+` " class="active">`+navigacija[i]+`</a></li>`;
+
+for(let i = 0; i < navigacija.length; i++){
+
+    if(navigacija[i] === "Author"){
+        navHtml += `
+            <li>
+                <a href="${navigacijaHref[i]}">${navigacija[i]}</a>
+            </li>
+        `;
+    } else {
+        navHtml += `
+            <li class="scroll-to-section">
+                <a href="#${navigacijaHref[i]}">${navigacija[i]}</a>
+            </li>
+        `;
     }
-navi1.innerHTML=navHtml;
+}
+
+navi1.innerHTML = navHtml;
+
+navi1.innerHTML = navHtml;
+
+let projects = [
+    {
+        title: "Digital Marketing Campaign",
+        image: "assets/images/projects-01.jpg"
+    },
+    {
+        title: "SEO Optimization Project",
+        image: "assets/images/projects-02.jpg"
+    },
+    {
+        title: "Web Development Solution",
+        image: "assets/images/projects-03.jpg"
+    },
+    {
+        title: "E-commerce Platform",
+        image: "assets/images/projects-04.jpg"
+    }
+];
+
+let projectsContainer = document.getElementById("projects-container");
+
+projects.forEach(function(project){
+
+    // Kreiranje glavnog diva
+    let item = document.createElement("div");
+    item.classList.add("item");
+
+    // Kreiranje slike
+    let img = document.createElement("img");
+    img.src = project.image;
+    img.alt = project.title;
+
+    // Kreiranje sadržaja
+    let downContent = document.createElement("div");
+    downContent.classList.add("down-content");
+
+    let title = document.createElement("h4");
+    title.textContent = project.title;
+
+    let link = document.createElement("a");
+    link.href = "#";
+
+    let icon = document.createElement("i");
+    icon.className = "fa fa-link";
+
+    link.appendChild(icon);
+    downContent.appendChild(title);
+    downContent.appendChild(link);
+
+    item.appendChild(img);
+    item.appendChild(downContent);
+
+    projectsContainer.appendChild(item);
+
+});
 
 // Forma
 
@@ -22,7 +97,7 @@ document.getElementById("contact-form").addEventListener("submit", function(e){
 
     let errors = "";
 
-    // REGEX za ime i prezime (samo slova, minimum 2 karaktera)
+    // REGEX za ime i prezime
     let nameRegex = /^[A-Za-z]{2,}$/;
 
     if(!nameRegex.test(name)){
